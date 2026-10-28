@@ -1,0 +1,24 @@
+# وابستگی‌های پلتفرم لایسنس (license_server.py).
+# فقط روی سروری لازمه که ربات فروش و لایسنس‌دهی رو اجرا می‌کنه، نه روی
+# نصب‌های عادی ربات.
+#
+#   pip install -r requirements-license.txt
+
+-r requirements.txt
+
+# ربات تلگرام
+python-telegram-bot>=20.7,<22
+
+# --- اختیاری: بررسی خودکار عکس رسید ---
+# بدون این‌ها پلتفرم کار می‌کنه، ولی هر رسید مستقیم می‌ره برای بررسی دستی
+# ادمین (بررسی خودکار غیرفعال می‌مونه).
+# علاوه بر pip، خود موتور tesseract هم باید جدا نصب باشه (پکیج پایتونش
+# فقط یه wrapper دور باینریه -- pip اون باینری رو نصب نمی‌کنه):
+#   لینوکس:  sudo apt install tesseract-ocr tesseract-ocr-fas
+#            (یا: sudo dnf install tesseract tesseract-langpack-fas)
+#   ویندوز:  نصب‌کننده‌ی رسمیِ UB-Mannheim
+#            https://github.com/UB-Mannheim/tesseract/releases
+# python install.py --components tesseract همین کار رو خودکار انجام
+# می‌ده (لینوکس با apt/dnf، ویندوز با دانلود و نصبِ سایلنتِ همون نصب‌کننده).
+pytesseract>=0.3.10
+Pillow>=10.0.0

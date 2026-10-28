@@ -1,0 +1,3 @@
+# اسکریپت‌های شل باید با LF بمونن، وگرنه توی لینوکس با خطای \r می‌ترکن
+*.sh text eol=lf
+Dockerfile text eol=lf

@@ -1,0 +1,22 @@
+# سرویس کاربری systemd برای اجرای ربات‌ها *بدون* پلتفرم لایسنس.
+# اگه license_server.py رو اجرا می‌کنی به این نیازی نداری (خودش سوپروایزر داره).
+
+[Unit]
+Description=TeamTalk audio bots (launcher)
+After=pulseaudio.service
+Wants=pulseaudio.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/ttbot
+ExecStart=/opt/ttbot/.venv/bin/python /opt/ttbot/launcher.py
+Restart=on-failure
+RestartSec=10
+Environment=PYTHONIOENCODING=utf-8
+Environment=PYTHONUNBUFFERED=1
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=45
+
+[Install]
+WantedBy=default.target

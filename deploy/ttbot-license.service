@@ -1,0 +1,40 @@
+# سرویس کاربری systemd برای پلتفرم لایسنس (ربات فروش + سوپروایزر ربات‌ها).
+#
+# نصب:
+#   mkdir -p ~/.config/systemd/user
+#   cp deploy/ttbot-license.service ~/.config/systemd/user/
+#   sed -i "s|/opt/ttbot|$PWD|g" ~/.config/systemd/user/ttbot-license.service
+#   sudo loginctl enable-linger $USER        # <-- حیاتی، وگرنه صدا کار نمی‌کنه
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now ttbot-license
+#
+# عمداً یه سرویس *کاربری* (--user) است، نه سطح سیستم: لاین صدا به یه سشن
+# پالس‌اودیو نیاز داره و سرویس‌های سطح سیستم سشن صوتی ندارن.
+
+[Unit]
+Description=TeamTalk bot licensing platform
+After=pulseaudio.service
+Wants=pulseaudio.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/ttbot
+ExecStart=/opt/ttbot/.venv/bin/python /opt/ttbot/license_server.py
+Restart=on-failure
+RestartSec=10
+# خروجی فارسی نباید با UnicodeEncodeError بمیره
+Environment=PYTHONIOENCODING=utf-8
+Environment=PYTHONUNBUFFERED=1
+# توکن‌ها بهتره اینجا باشن نه توی فایل کانفیگِ قابل خواندن:
+#   systemctl --user edit ttbot-license
+# Environment=LICENSING_BOT_TOKEN=123456:AA...
+# Environment=LICENSING_ADMIN_IDS=123456789
+
+# ربات‌های مشتری‌ها پروسه‌ی فرزند این سرویس‌ان؛ با بسته‌شدن سرویس همه باید
+# مرتب بسته بشن.
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=45
+
+[Install]
+WantedBy=default.target

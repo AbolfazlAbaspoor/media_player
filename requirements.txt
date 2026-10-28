@@ -1,0 +1,29 @@
+# وابستگی‌های خود ربات تیم‌تاک (ویندوز و لینوکس، یکسان).
+#
+#   pip install -r requirements.txt
+#
+# چیزهایی که pip نصب نمی‌کنه و باید جدا تهیه بشن:
+#   - TeamTalk SDK  -> teamtalk/TeamTalk5.dll (ویندوز) یا teamtalk/libTeamTalk5.so (لینوکس)
+#   - libmpv        -> mpv/libmpv-2.dll (ویندوز) یا «apt install libmpv2» (لینوکس)
+#   - ffmpeg        -> bin/ffmpeg.exe (ویندوز) یا «apt install ffmpeg» (لینوکس)
+#   - pactl         -> برای لاین صدا روی لینوکس: «apt install pulseaudio-utils»
+#
+# python install.py همه‌ی این‌ها (و همین pip install بالا) رو خودکار
+# انجام می‌ده -- ببین docs/INSTALL.md. راهنمای کامل نصب لینوکس: docs/INSTALL-linux.md
+
+yt-dlp>=2024.8.6
+
+# رمزنگاری سشن اینستاگرام (core/instagram_user.py)
+cryptography>=42.0.0
+
+# رمزنگاری لاگ خطا روی سیستم مشتری (core/error_crypt.py).
+# نبودنش برنامه رو نمی‌خوابونه، ولی لاگ خام می‌مونه — build-check گیر می‌ده.
+PyNaCl>=1.5.0
+
+# --- اختیاری: فقط اگه سرویس اینستاگرام رو می‌خوای ---
+# اگه نصب نباشه ربات بالا میاد، فقط دستورهای اینستاگرام کار نمی‌کنن.
+instagrapi>=3.0.16   # قدیمی‌ترها با API فعلیِ اینستاگرام UnknownError می‌دن
+
+# --- اختیاری: استخراج لینک از صفحه‌هایی که جاوااسکریپت لازم دارن ---
+# بعد از نصب، یه بار لازمه: python -m playwright install chromium
+playwright>=1.44.0

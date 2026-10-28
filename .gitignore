@@ -1,0 +1,76 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# --- logs (rotated, machine-local; never useful in the repo) ---
+errors/*.log
+errors/*.log.1
+
+# --- per-bot runtime data ---
+# identity.json پسورد لاگین به‌صورت متن ساده داره؛ هیچ‌وقت نباید commit بشه.
+data/**/identity.json
+data/**/aliases.json
+data/**/downloads/
+data/**/cookies/
+data/**/feedback/
+# فایل کانفیگ مشترک هم مخصوص هر نصبه، نه بخشی از سورس.
+data/**/shared_config.json
+data/**/config.json
+data/**/history.json
+
+# حساب‌های شخصی کاربرها (sf) -- هش پسورد + فروریت شخصی؛ داده‌ی کاربر نهاییه،
+# نه بخشی از سورس.
+data/**/accounts/
+data/_global_accounts/
+
+# --- big binaries (already tracked via LFS / provided separately) ---
+bin/ffmpeg.exe
+
+# فایل لایسنس هر نمونه -- مخصوص همون نصبه، نه بخشی از سورس.
+data/**/license.json
+
+# وضعیت لاین‌های صدا و شناسه‌ی ماشین (هر دو مخصوص همین نصب‌ان).
+data/_audio_lines.json
+data/_machine_id
+
+# --- پلتفرم لایسنس ---
+# اینجا توکن ربات تلگرام، کلید خصوصی امضا، دیتابیس مشتری‌ها و عکس رسیدهای
+# پرداخت هستن. هیچ‌کدوم هیچ‌وقت نباید commit بشن.
+data/licensing/
+
+# --- خروجی بیلد ---
+dist/
+build/_work/
+*.spec
+
+# بستهی تحویلی مشتری (خروجی package_rental.py). صدها مگابایت
+# بایناریه که از dist/ ساخته می‌شه — و rental.json داخلش کلید
+# لایسنس مشتریه.
+goldenFriends/
+
+# کش و وضعیت محلی رنگلر.
+deploy/.wrangler/
+
+# ابزار فشرده‌سازی بیلد (بایناری، جدا دانلود می‌شه). build.py خودش
+# پیداش می‌کنه؛ نبودنش فقط یعنی بیلد بزرگ‌تر.
+build/upx/
+bin/xray
+bin/xray.exe
+
+# نسخه‌ی پشتیبان ابزار ریست (شامل کانفیگ و دیتابیس لایسنس؛ هیچ‌وقت commit نشه)
+_reset_backups/
+
+# --- باینری‌های ویندوزی و سنگین (Railway/لینوکس اون‌ها رو لازم نداره) ---
+# گیت‌هاب فایل بالای ۱۰۰ مگ رو قبول نمی‌کنه. ffmpeg/libmpv/tesseract روی
+# لینوکس با apt توی Dockerfile نصب می‌شن. (core/teamtalk/libTeamTalk5.so
+# عمداً ignore نشده -- باید توی ریپو باشه.)
+*.dll
+*.exe
+bin/*
+tesseract/
+
+# فایل متغیرهای Railway (توکن داخلشه) -- ساخته‌ی deploy/railway_setup.py
+railway-variables.env

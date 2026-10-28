@@ -1,0 +1,12 @@
+name = "tt-license"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+# شناسه رو با خروجیِ این دستور پر کن:
+#   wrangler kv namespace create LICENSES
+[[kv_namespaces]]
+binding = "LICENSES"
+id = "d60fe43f083d4d54a5dc5081d6a650f8"
+
+# کلید امضا به‌صورت secret ذخیره می‌شه، نه اینجا:
+#   wrangler secret put SIGNING_KEY

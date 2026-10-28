@@ -1,0 +1,26 @@
+.git
+.gitignore
+.venv
+venv
+__pycache__
+*.pyc
+.pytest_cache
+
+# وضعیت اجرا -- روی Railway توی Volume ساخته می‌شه، نه توی ایمیج
+data/
+errors/
+_reset_backups/
+goldenFriends/
+dist/
+build/
+tests/
+
+# باینری‌های ویندوزی (روی لینوکس به کار نمی‌آن و بعضی‌هاشون بالای ۱۰۰ مگن)
+bin/
+tesseract/
+**/*.dll
+**/*.exe
+deploy/.wrangler/
+token.txt
+.env
+railway-variables.env
